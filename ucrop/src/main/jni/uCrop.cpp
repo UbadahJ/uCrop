@@ -31,7 +31,7 @@ JNIEXPORT jboolean JNICALL Java_com_yalantis_ucrop_task_BitmapCropTask_cropCImg
     jstring pathSource, jstring pathResult,
     jint left, jint top, jint width, jint height, jfloat angle, jfloat resizeScale,
     jint format, jint quality,
-    jint exifDegrees, jint exifTranslation) {
+    jint exifDegrees, jint exifTranslation, jboolean flipX, jboolean flipY) {
 
     LOGD("Crop image with CImg");
 
@@ -58,6 +58,12 @@ JNIEXPORT jboolean JNICALL Java_com_yalantis_ucrop_task_BitmapCropTask_cropCImg
         }
         if (exifTranslation != 1) {
             img.mirror("x");
+        }
+        if (flipX) {
+            img.mirror("x");
+        }
+        if (flipY) {
+            img.mirror("y");
         }
 
         const int

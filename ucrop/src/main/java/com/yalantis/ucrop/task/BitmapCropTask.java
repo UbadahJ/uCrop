@@ -143,7 +143,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
             boolean cropped = cropCImg(mImageInputPath, mImageOutputPath,
                     cropOffsetX, cropOffsetY, mCroppedImageWidth, mCroppedImageHeight,
                     mCurrentAngle, resizeScale, mCompressFormat.ordinal(), mCompressQuality,
-                    mExifInfo.getExifDegrees(), mExifInfo.getExifTranslation());
+                    mExifInfo.getExifDegrees(), mExifInfo.getExifTranslation(), false , false);
             if (cropped && mCompressFormat.equals(Bitmap.CompressFormat.JPEG)) {
                 ImageHeaderParser.copyExif(originalExif, mCroppedImageWidth, mCroppedImageHeight, mImageOutputPath);
             }
@@ -179,7 +179,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
              int left, int top, int width, int height,
              float angle, float resizeScale,
              int format, int quality,
-             int exifDegrees, int exifTranslation) throws IOException, OutOfMemoryError;
+             int exifDegrees, int exifTranslation, boolean flipX, boolean flipY) throws IOException, OutOfMemoryError;
 
     @Override
     protected void onPostExecute(@Nullable Throwable t) {
